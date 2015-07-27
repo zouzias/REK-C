@@ -57,10 +57,11 @@ double residError (const MAT * A, double *x, const double *b, const double *z){
     // Here, Ax = (z - b);
     myDGEMV(A, x, Ax);
 
-    // Now, Ax = A * x - b + z;
+    // Now, compute norm of  Ax = A * x - b + z;
+    double nrm = DNRM2 (A->m, Ax, 1); 
     free (Ax);
 
-    return DNRM2 (A->m, Ax, 1) / DNRM2 (A->n, x, 1);
+    return nrm / DNRM2 (A->n, x, 1);
 }
 
 void myDGEMV(const MAT* A, const double* x, double* y) {
