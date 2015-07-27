@@ -13,7 +13,7 @@ script:
 - echo "Running unit tests"
 - make & make test
 - echo "Running valgrind tests on dense matrices..."
-- valgrind --leak-check=full --error-exitcode=1 ./rek
+- valgrind --leak-check=full --undef-value-errors=no --error-exitcode=1 ./rek
 - echo "Running valgrind tests on sparse matrices..."
-- valgrind --leak-check=full --error-exitcode=1 ./rek
+- valgrind --leak-check=full --undef-value-errors=no --error-exitcode=1 ./rek
 
