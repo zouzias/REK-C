@@ -20,6 +20,56 @@ Clone the project. Type type
 <code>./main</code>
 
 The above code runs a simple instance of least-squares for a gaussian random matrix A and gaussian vector b. See 'main.c' for more details.
+
+<h4>Usage</h4>
+```
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
+#include <stddef.h>
+#include "algorithms/REK/REKBLAS.h"
+#include "matrix/sparseMatrix.h"
+#include "matrix/matrix.h"
+#include "utils/utils.h"
+
+int main() {
+    
+    /* initialize random seed */
+    srand(time(NULL));
+
+    // Dimensions of matrix A (m x n).
+    int m = 5000, n = 500;
+    
+    // Maximum number of iterations
+    double TOL = 10e-8;
+    
+    // Matrix sparsity (% of nnz)
+    double sparsity = 0.25;
+    
+    // Allocating space for unknown vector x, 
+    // right size vector b, and solution vector xls, for Ax = b
+    double *xls = gaussianVector(n);
+    double* b = (double*) malloc( m * sizeof(double));
+    double* x = (double*) malloc( n * sizeof(double));
+    memset (x, 0, n * sizeof (double));
+    
+    // Sparse input matrix
+    SMAT *As = fillSparseMat(m, n, sparsity);
+    
+    // Set b = As * x
+    myDGEMVSparse(As,xls, b);
+    
+    printf("REK for sparse (%d x %d)-matrix with sparsity %f.\n", m, n, sparsity);
+    sparseREK (As, x, b, TOL);
+    double error = lsErrorSparse(As, x, b);
+    
+    printf("Sparse REK: LS error is : %e\n", error);
+
+    freeSMAT(As); free(xls); free(x); free(b);
+    return 0;
+}
+```
 <h4>
 Bugs
 </h4>
