@@ -15,3 +15,6 @@ script:
 - echo "Running valgrind tests on sparse/dense matrices..."
 - valgrind --leak-check=full --undef-value-errors=no --error-exitcode=1 ./rek
 
+notifications:
+  email:
+    - zouzias@gmail.com
