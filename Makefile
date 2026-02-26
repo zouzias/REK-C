@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-c -Wall -O3
 SUBDIRS= src . tests
 CHECK_LIBS=/usr/local/Cellar/check/0.9.14/lib/
-LIBS=-lm
+LIBS=-lm -lsubunit
 
 all: rek
 

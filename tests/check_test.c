@@ -13,19 +13,19 @@ double test_sparse_gaussian_system(int m, int n, double sparsity, double TOL);
 START_TEST (test_name)
 {
   /* unit test code */
-ck_assert_msg(0 != 1);
+ck_assert_msg(0 != 1, "Noop test");
 }
 END_TEST
 
 START_TEST (test_dense_gaussian)
 {
-	ck_assert_msg( test_dense_gaussian_system(1000, 100, 10e-7) < 10e-4 ); // Test if accuracy less than 5 digits
+	ck_assert_msg( test_dense_gaussian_system(1000, 100, 10e-7) < 10e-4, "Test if accuracy less than 5 digits");
 }
 END_TEST
 
 START_TEST (test_sparse_gaussian)
 {
-	ck_assert_msg( test_sparse_gaussian_system(1000, 100, 0.2, 10e-7) < 10e-4 ); // Test if accuracy less than 5 digits
+	ck_assert_msg( test_sparse_gaussian_system(1000, 100, 0.2, 10e-7) < 10e-4, "Test if accuracy less than 5 digits");
 }
 END_TEST
 
