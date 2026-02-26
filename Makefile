@@ -1,3 +1,4 @@
+.PHONY: all test
 CC=gcc
 CFLAGS=-c -Wall -O3
 SUBDIRS= src . tests

@@ -7,11 +7,12 @@
 #ifndef _UTILS_HPP
 #define _UTILS_HPP
 
-#include <time.h>
-
 #include "../matrix/matrix.h"
 #include "../matrix/sparseMatrix.h"
 #include "../cBLAS/cBLAS.h"
+
+// Wall time in linux
+long wtime();
 
 /**
  * Computes norm( A * x - (b - z), 2)

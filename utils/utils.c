@@ -6,7 +6,7 @@
 #include "utils.h"
 
 /* Get time in milliseconds */
-double wtime() {
+long wtime() {
     struct timespec ts;
 
     clock_gettime(CLOCK_MONOTONIC, &ts);
