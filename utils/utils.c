@@ -1,25 +1,19 @@
 #include<stdlib.h>		// for malloc
 #include<math.h>		// for pow
 #include<string.h>		// memset, memcpy
-#include <sys/timeb.h>
+#include <time.h>
 #include <assert.h>
 #include "utils.h"
 
-/* Get time */
-double wtime() {
-    struct timeb T;
-    static time_t time_diff;
-    static time_t mill_diff;
+/* Get time in milliseconds */
+long wtime() {
+    struct timespec ts;
 
-    double dt;
-    (void) ftime(&T);
+    clock_gettime(CLOCK_MONOTONIC, &ts);
 
-    time_diff = T.time;
-    mill_diff = T.millitm;
+    long ms = ts.tv_sec * 1000L + ts.tv_nsec / 1000000L;
 
-    dt = ((double) time_diff) + (1e-3) * ((double) mill_diff);
-
-    return dt;
+    return ms;
 }
 
 double residErrorSparse (const SMAT * A, const double *x, const double *b, const double *z){

@@ -12,7 +12,7 @@
 #include "../cBLAS/cBLAS.h"
 
 // Wall time in linux
-double wtime();
+long wtime();
 
 /**
  * Computes norm( A * x - (b - z), 2)
